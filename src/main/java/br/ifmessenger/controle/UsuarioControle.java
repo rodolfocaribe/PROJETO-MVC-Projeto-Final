@@ -28,6 +28,7 @@ public class UsuarioControle {
     public String novoUsuario(@ModelAttribute("usuario") Usuario usuario) {
         return "/formulario";
     }
+
     @PostMapping("/salvar")
     public String salvarUsuario(@ModelAttribute("usuario") Usuario usuario) {
         usuarioRepo.save(usuario);
@@ -35,22 +36,15 @@ public class UsuarioControle {
     }
     @GetMapping("/usuarios/{id}")
     public String alterarUsuario(@PathVariable("id") long id, Model model) {
-        Optional<Usuario> usuarioOpt = usuarioRepo.findById(id);
-        if (usuarioOpt.isEmpty()) {
-            throw new IllegalArgumentException("Usuario inválido.");
-        }
-
-        model.addAttribute("usuario", usuarioOpt.get());
+        Usuario usuario = usuarioRepo.findById(id);
+        model.addAttribute("usuario", usuario);
         return "/formulario";
     }
 
     @GetMapping("/excluir/{id}")
     public String excluirPessoa(@PathVariable("id") long id) {
-        Optional<Usuario> usuarioOpt = usuarioRepo.findById(id);
-        if (usuarioOpt.isEmpty()) {
-            throw new IllegalArgumentException("Usuario Inválido.");
-        }
-        usuarioRepo.delete(usuarioOpt.get());
+        Usuario usuario = usuarioRepo.findById(id);
+        usuarioRepo.delete(usuario);
         return "redirect:/usuarios";
     }
 }

@@ -11,6 +11,8 @@ import java.util.Objects;
 
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Usuario {
 
     private Long id;
