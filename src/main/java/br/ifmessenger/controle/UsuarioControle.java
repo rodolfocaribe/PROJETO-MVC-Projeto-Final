@@ -1,8 +1,8 @@
 package br.ifmessenger.controle;
 
 
-import br.ifmessenger.usuario.Usuario;
-import br.ifmessenger.usuario.UsuarioRepositorio;
+import br.ifmessenger.modelo.Usuario;
+import br.ifmessenger.repositorio.UsuarioRepositorio;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

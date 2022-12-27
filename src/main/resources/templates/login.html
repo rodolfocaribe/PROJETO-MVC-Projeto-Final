@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>iF Messenger</title>
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+          crossorigin="anonymous">
+</head>
+<body>
+<header th:insert="fragments/geral :: header"></header>
+
+<div th:if="${param.error}">
+    <h6 class="alert alert-danger">Usuario/senha inválidos</h6>
+</div>
+
+<form th:action="@{/login}" method="post">
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input class="form-control" type="text" name="username" placeholder="E-mail"/>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Senha</label>
+        <input class="form-control" type="password" name="password" placeholder="Senha"/>
+    </div>
+    <input class="btn btn-primary" type="submit" value="Log in"/>
+</form>
+</body>
+</html>

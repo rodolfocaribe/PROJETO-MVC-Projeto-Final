@@ -1,7 +1,7 @@
 package br.ifmessenger;
 
-import br.ifmessenger.usuario.Usuario;
-import br.ifmessenger.usuario.UsuarioRepositorio;
+import br.ifmessenger.modelo.Usuario;
+import br.ifmessenger.repositorio.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -14,7 +14,6 @@ public class PopulacaoIncialBanco implements CommandLineRunner {
     private UsuarioRepositorio usuarioRepo;
 
     @Override
-    @Transactional
     public void run(String... args) throws Exception {
         Usuario usuario1 = new Usuario("Marcos Vinicius", "111.222.333-00", "marcos.vinicius@estudante.iftm.edu,br");
         Usuario usuario2 = new Usuario("Juliana Lobo", "222.333.444-00", "juliana.lobo@estudante.iftm.edu,br");

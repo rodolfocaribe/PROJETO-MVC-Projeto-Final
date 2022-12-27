@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
   <title>iF Messenger</title>
@@ -10,10 +10,12 @@
         crossorigin="anonymous">
 </head>
 <body>
+<header th:insert="fragments/geral.html :: header"> </header>
+
 <div class="container my-2">
   <h1>Gestão de Usuários</h1>
   <hr>
-  <h2>Editar Usuario</h2>
+<!--  <h2>Editar Usuario</h2>-->
   <form action="#" th:action="@{/salvar}" th:object="${usuario}" method="POST">
     <input type="hidden" id="id" th:field="*{id}">
     <input type="text" th:field="*{nome}" placeholder="Nome" class="form-control mb-4 col-4">
