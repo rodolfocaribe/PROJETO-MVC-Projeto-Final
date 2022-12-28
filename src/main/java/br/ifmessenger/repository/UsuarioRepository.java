@@ -53,7 +53,7 @@ public class UsuarioRepository {
     public Usuario findByEmail(String email) {
         return bd.queryForObject("select * from usuario where email=?",
                 (res, linha) -> {
-                    return new Usuario(res.getLong("id"), res.getString("nome"), res.getString("cpf"), res.getString("email"), null);
+                    return new Usuario(res.getLong("id"), res.getString("nome"), res.getString("cpf"), res.getString("email"), res.getString("senha"));
                 },
                 email);
     }

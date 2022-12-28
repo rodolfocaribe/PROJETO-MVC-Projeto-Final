@@ -17,7 +17,7 @@ public class UsuarioController {
     public UsuarioController(UsuarioRepository usuarioRepo) {
         this.usuarioRepo = usuarioRepo;
     }
-    @GetMapping("/usuarios")
+    @GetMapping({"/","/usuarios"})
     public String usuarios (Model model) {
         model.addAttribute("listaUsuarios", usuarioRepo.findAll());
         return "usuarios";

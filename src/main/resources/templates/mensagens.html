@@ -1,44 +1,54 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>iF Messenger</title>
-
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-          crossorigin="anonymous">
-
-</head>
-<body>
-<div class="container my-2">
-
-    <h1>Mensagens</h1>
-    <table border="1" class="table table-striped table-responsive-md">
-        <thead>
+<div th:replace="~{fragments/geral::modelo}">
+  <div th:fragment="conteudo">
+    <h1>Mensagens recebidas</h1>
+    <table class="table table-striped table-responsive-md">
+      <thead>
         <tr>
-            <th>Usuario</th>
-            <th>Mensagem</th>
-            <th>Data</th>
-            <th>Ações</th>
+          <th>Usuario</th>
+          <th>Mensagem</th>
         </tr>
-        </thead>
-        <tbody>
-        <tr th:each="usuario : ${listaUsuarios}">
-            <td th:text="${usuario.nome}"></td>
-            <td th:text="${usuario.cpf}"></td>
-            <td th:text="${usuario.email}"></td>
-            <td>
-                <a th:href="@{/usuarios/{id}(id=${usuario.id})}" class="btn btn-primary">Alterar</a>
-                <a th:href="@{/excluir/{id}(id=${usuario.id})}" class="btn btn-danger">Excluir</a>
-            </td>
+      </thead>
+      <tbody>
+        <tr th:each="msg : ${mensagensRecebidas}">
+          <td th:text="${msg.remetente.nome}"></td>
+          <td th:text="${msg.mensagem}"></td>
         </tr>
-        </tbody>
+      </tbody>
     </table>
-    <form th:action="@{envia-mensagem}" th:object="${mensagem}">
-        <input type="text" name="mensagem">
-        <input type="submit"/>
-    </form>
+    
+    <h1>Mensagens enviadas</h1>
+    <table class="table table-striped table-responsive-md">
+      <thead>
+        <tr>
+          <th>Usuario</th>
+          <th>Mensagem</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="msg : ${mensagensEnviadas}">
+          <td th:text="${msg.destinatario.nome}"></td>
+          <td th:text="${msg.mensagem}">teste</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Nova mensagem</h5>
+        <form th:action="@{envia-mensagem}" method="post" th:object="${mensagem}">
+          <div class="mb-3">
+            <label for="mensagem" class="form-label">Mensagem</label>
+            <input class="form-control" type="text" th:field="*{mensagem}">
+          </div>
+          <div class="mb-3">
+            <label for="destinatario.id" class="form-label">Destino</label>
+            <select th:field="*{destinatario.id}" class="form-control">
+              <option th:each="u : ${usuarios}" th:value="${u.id}" th:text="${u.nome}"></option>
+            </select>
+          </div>
+          <input class="btn btn-primary" type="submit" />
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
-</body>
-</html>
