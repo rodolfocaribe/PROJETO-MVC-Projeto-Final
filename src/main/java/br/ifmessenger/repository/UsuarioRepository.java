@@ -1,6 +1,6 @@
-package br.ifmessenger.repositorio;
+package br.ifmessenger.repository;
 
-import br.ifmessenger.modelo.Usuario;
+import br.ifmessenger.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class UsuarioRepositorio {
+public class UsuarioRepository {
     @Autowired
     JdbcTemplate bd;
 
@@ -19,6 +19,8 @@ public class UsuarioRepositorio {
                     usuario.setEmail(res.getString("email"));
                     usuario.setId(res.getLong("id"));
                     usuario.setNome(res.getString("nome"));
+                    usuario.setSenha(res.getString("senha"));
+
                     return usuario;
                 }
         );
@@ -26,10 +28,10 @@ public class UsuarioRepositorio {
 
     public void save(Usuario usuario) {
         if (usuario.getId() == null) {
-            bd.update("insert into usuario(cpf,email,nome) values(?,?,?)",
-                    usuario.getCpf(), usuario.getEmail(), usuario.getNome());
+            bd.update("insert into usuario(nome,cpf,email,senha) values(?,?,?,?)",
+                    usuario.getNome(), usuario.getCpf(), usuario.getEmail(), usuario.getSenha());
         } else {
-            bd.update("update usuario set cpf=?, email=?, nome=? where id=?", usuario.getCpf(), usuario.getEmail(), usuario.getNome(), usuario.getId());
+            bd.update("update usuario set nome=?, cpf=?, email=? where id=?", usuario.getNome(), usuario.getCpf(), usuario.getEmail(), usuario.getId());
         }
     }
 

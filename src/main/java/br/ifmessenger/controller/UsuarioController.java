@@ -1,8 +1,8 @@
-package br.ifmessenger.controle;
+package br.ifmessenger.controller;
 
 
-import br.ifmessenger.modelo.Usuario;
-import br.ifmessenger.repositorio.UsuarioRepositorio;
+import br.ifmessenger.model.Usuario;
+import br.ifmessenger.repository.UsuarioRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,13 +10,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.Optional;
-
 @Controller
-public class UsuarioControle {
-    private UsuarioRepositorio usuarioRepo;
+public class UsuarioController {
+    private UsuarioRepository usuarioRepo;
 
-    public UsuarioControle(UsuarioRepositorio usuarioRepo) {
+    public UsuarioController(UsuarioRepository usuarioRepo) {
         this.usuarioRepo = usuarioRepo;
     }
     @GetMapping("/usuarios")

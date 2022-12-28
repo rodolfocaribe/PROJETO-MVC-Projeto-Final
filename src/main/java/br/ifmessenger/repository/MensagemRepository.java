@@ -1,15 +1,12 @@
-package br.ifmessenger.repositorio;
+package br.ifmessenger.repository;
 
-import br.ifmessenger.modelo.Mensagem;
-import br.ifmessenger.modelo.Usuario;
+import br.ifmessenger.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public class MensagemRepositorio {
+public class MensagemRepository {
 
     @Autowired
     JdbcTemplate bd;

@@ -1,15 +1,12 @@
 package br.ifmessenger;
 
-import br.ifmessenger.modelo.Usuario;
-import br.ifmessenger.repositorio.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 @Component
-public class PopulacaoIncialBanco implements CommandLineRunner {
+public class InitialDataBasePopulating implements CommandLineRunner {
 
     @Autowired
     private JdbcTemplate bd;
@@ -22,8 +19,8 @@ public class PopulacaoIncialBanco implements CommandLineRunner {
                 "FOREIGN KEY (remetente_id) REFERENCES usuario(id), " +
                 "FOREIGN KEY (destinatario_id) REFERENCES usuario(id) )");
 
-        bd.update("insert into usuario(nome,cpf,email,senha) values(?,?,?,?)","Marcos Vinicius", "111.222.333-00", "marcos.vinicius@estudante.iftm.edu.br","$2a$12$3LIV5xZzyR07QdxPsQVQVefkWt8gOk1y6egvbgpjB4IwkudnJQYS2");
-        bd.update("insert into usuario(nome,cpf,email,senha) values(?,?,?,?)","Juliana Lobo", "222.333.444-00", "juliana.lobo@estudante.iftm.edu.br","$2a$12$LUqinF6BKTZkYUYPkadgBu8Ya9uj0GlS1zTqneVfr684RSSI7IeTe");
-        bd.update("insert into usuario(nome,cpf,email,senha) values(?,?,?,?)","Rodolfo Cardoso", "999.888.777-33", "rodolfo.ribeiro@estudante.iftm.edu.br","$2a$12$N7mQtLqNv/wrRceqcgaThul5Mh5v8hzM7mMF6wFJbQcI/tJ3lPody");
+        bd.update("INSERT INTO usuario(nome,cpf,email,senha) values(?,?,?,?)","Marcos Vinicius", "111.222.333-00", "marcos.vinicius@estudante.iftm.edu.br","$2a$12$3LIV5xZzyR07QdxPsQVQVefkWt8gOk1y6egvbgpjB4IwkudnJQYS2");
+        bd.update("INSERT INTO usuario(nome,cpf,email,senha) values(?,?,?,?)","Juliana Lobo", "222.333.444-00", "juliana.lobo@estudante.iftm.edu.br","$2a$12$LUqinF6BKTZkYUYPkadgBu8Ya9uj0GlS1zTqneVfr684RSSI7IeTe");
+        bd.update("INSERT INTO usuario(nome,cpf,email,senha) values(?,?,?,?)","Rodolfo Cardoso", "999.888.777-33", "rodolfo@gmail.com","$2a$04$pFKoX7IoQXI50jolo8JzR.fk606rpx4SS/EL4gDefmuGC05rAxYUm");
     }
 }

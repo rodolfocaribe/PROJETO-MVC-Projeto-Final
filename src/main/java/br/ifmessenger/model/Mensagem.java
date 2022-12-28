@@ -1,11 +1,8 @@
-package br.ifmessenger.modelo;
+package br.ifmessenger.model;
 
-import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
-
-import java.util.Objects;
 
 @Data
 @NoArgsConstructor
